@@ -35,11 +35,39 @@ void SortedType::InsertItem(ItemType item){
 }
 
 void SortedType::DeleteItem(ItemType item){
+    int location = 0;
 
+    while(item.ComparedTo(info[location]) != EQUAL)
+        location++;
+
+    for(int index = location + 1 ; index < length; index++)
+        info[index - 1] = info[index];
+    length--;
 }
 
 void SortedType::RetrieveItem(ItemType& item, bool& found){
+    int midPoint;
+    int first = 0;
+    int last = length - 1;
+    bool moreToSearch = (first <= last);
+    found = false;
 
+    while(!moreToSearch && !found){
+        midPoint = (first + last)/2;
+        switch(item.ComparedTo(info[midPoint])){
+            case LESS:
+                last = midPoint - 1;
+                moreToSearch = (first <= last);
+                break;
+            case GREATER:
+                first = midPoint + 1;
+                moreToSearch = (first <= last);
+                break;
+            case EQUAL:
+                found = true;
+                break;
+        }
+    }
 }
 
 void SortedType::ResetList(){

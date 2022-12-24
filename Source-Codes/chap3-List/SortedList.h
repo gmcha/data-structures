@@ -7,7 +7,7 @@ class SortedType{
         int LengthIs() const;
         void InsertItem(ItemType item);
         void DeleteItem(ItemType item);
-        void RetrieveItem(ItemType& item, bool& found);
+        void RetrieveItem(ItemType& item, bool& found); // binary search
         void ResetList();
         void GetNextItem(ItemType& item);
     private:
